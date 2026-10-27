@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For My Hubby 🌙</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;color:#fff0fa;
+ font-family:Georgia,serif;text-align:center;
+ background:radial-gradient(ellipse at 50% 0%,#293c70 0%,#101832 45%,#050916 100%);
+ overflow-x:hidden
+}
+#sky{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.star{position:absolute;background:white;border-radius:50%;
+ animation:twinkle 2s infinite alternate}
+@keyframes twinkle{to{opacity:.2;transform:scale(.6)}}
+.moon{font-size:76px;filter:drop-shadow(0 0 22px #c4c9ff);
+ margin:20px 0 8px;animation:glow 3s infinite alternate}
+@keyframes glow{to{filter:drop-shadow(0 0 38px #e0caff)}}
+main{position:relative;z-index:1;max-width:700px;
+ margin:auto;padding:35px 18px 60px}
+h1{font-size:clamp(32px,8vw,52px);margin:8px 0;
+ color:#ffe3f4;text-shadow:0 0 22px #e59bd8}
+.subtitle{font-size:18px;line-height:1.8;color:#dce4ff}
+button{border:0;border-radius:30px;padding:14px 22px;
+ margin:9px 5px;font-size:15px;cursor:pointer;
+ background:linear-gradient(120deg,#f6b9dc,#d4c9ff);
+ color:#241536;box-shadow:0 0 20px #bd9de955}
+button:active{transform:scale(.97)}
+.card{margin:24px auto;padding:23px 18px;
+ border:1px solid #d7c8ff55;border-radius:22px;
+ background:#ffffff0b;backdrop-filter:blur(8px);
+ box-shadow:0 8px 35px #0003}
+h2{color:#ffd8ef;font-weight:normal}
+#letter,#loveWall,#final{display:none}
+#letter p{line-height:1.9;font-size:18px}
+#loveWall{max-height:360px;overflow:auto;
+ display:none;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.love{padding:9px 3px;border-radius:12px;
+ background:#ffffff0d;color:#ffd9ef;font-size:14px}
+#final p{line-height:1.9}
+.heart{position:fixed;bottom:-30px;z-index:3;
+ pointer-events:none;animation:rise 5s linear forwards}
+@keyframes rise{to{transform:translateY(-110vh) rotate(30deg);opacity:0}}
+footer{color:#bfc9ed;font-size:13px;margin-top:35px}
+</style>
+</head>
+<body>
+<div id="sky"></div>
+<main>
+ <div class="moon">☾</div>
+ <p style="letter-spacing:5px;color:#d6ceff">A LITTLE UNIVERSE FOR YOU</p>
+ <h1>For My Dearest Hubby 💗</h1>
+ <p class="subtitle">
+  Out of all the stars in the sky,<br>
+  my heart would still choose you. ✨
+ </p>
+
+ <button onclick="openLetter()">💌 Open Your Love Letter</button>
+ <button onclick="showLove()">💖 1,000 Reasons I Love You</button>
+
+ <section class="card" id="letter">
+  <h2>To My Favourite Person 🌙</h2>
+  <p>
+   My dearest hubby,<br><br>
+   If I could give you one thing in this world,
+   I would give you the ability to see yourself
+   through my eyes. Then you would understand
+   how precious you are to me.<br><br>
+   You make ordinary moments feel special.
+   Even beneath a thousand stars, my favourite
+   place is wherever my heart feels close to yours.<br><br>
+   No website could ever hold all the love I have
+   for you, but I made this little universe to remind
+   you that you are deeply loved.<br><br>
+   Whenever you look at the moon, remember
+   that someone is sending you a little extra love. ♡<br><br>
+   Forever sending you love,<br>
+   <strong>Your loving wife 💗</strong>
+  </p>
+ </section>
+
+ <section class="card">
+  <h2>A Thousand Little I Love Yous 💕</h2>
+  <p class="subtitle">Because one is never enough!</p>
+  <div id="loveWall"></div>
+  <button onclick="showLove()">Reveal all 1,000 💗</button>
+ </section>
+
+ <section class="card">
+  <h2>One Last Little Surprise 🎁</h2>
+  <p class="subtitle">There's something else I want you to know...</p>
+  <button onclick="openFinal()">Open Your Final Surprise ✨</button>
+  <div id="final">
+   <div style="font-size:55px">💖🌙💖</div>
+   <h2>You Are My Favourite Love Story</h2>
+   <p>
+    If I could choose a thousand times,<br>
+    I would still choose you.<br><br>
+    In every season, under every sky,<br>
+    may we keep finding reasons to smile,<br>
+    to care for each other, and to grow together.<br><br>
+    I LOVE YOU, HUBBY! 💋
+   </p>
+   <button onclick="burst()">Send You a Thousand Hearts 💞</button>
+  </div>
+ </section>
+ <footer>Made with love, just for you. ♡</footer>
+</main>
+<script>
+const sky=document.getElementById('sky');
+for(let i=0;i<115;i++){
+ const s=document.createElement('i');
+ s.className='star';
+ s.style.left=Math.random()*100+'%';
+ s.style.top=Math.random()*100+'%';
+ s.style.width=s.style.height=(Math.random()*3+1)+'px';
+ s.style.animationDelay=Math.random()*3+'s';
+ sky.appendChild(s);
+}
+function openLetter(){
+ document.getElementById('letter').style.display='block';
+ document.getElementById('letter').scrollIntoView({behavior:'smooth'});
+}
+function showLove(){
+ const wall=document.getElementById('loveWall');
+ if(!wall.dataset.ready){
+  const frag=document.createDocumentFragment();
+  for(let i=1;i<=1000;i++){
+   const d=document.createElement('div');
+   d.className='love';
+   d.textContent='I Love You ❤️ '+i;
+   frag.appendChild(d);
+  }
+  wall.appendChild(frag);
+  wall.dataset.ready='yes';
+ }
+ wall.style.display='grid';
+ wall.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function openFinal(){
+ document.getElementById('final').style.display='block';
+ burst();
+ document.getElementById('final').scrollIntoView({behavior:'smooth'});
+}
+function burst(){
+ for(let i=0;i<45;i++){
+  const h=document.createElement('span');
+  h.className='heart';
+  h.textContent=['💗','💕','💖','✨','💘'][Math.floor(Math.random()*5)];
+  h.style.left=Math.random()*100+'vw';
+  h.style.fontSize=(16+Math.random()*22)+'px';
+  h.style.animationDuration=(3+Math.random()*3)+'s';
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6500);
+ }
+}
+</script>
+</body>
+</html>
